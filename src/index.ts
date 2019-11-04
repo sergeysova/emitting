@@ -190,11 +190,13 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
   }
 }
 
-function createDeferred<T, E = any>(): {
+type Deferred<T, E> = {
   resolve: (value: T) => void
   reject: (error: E) => void
   promise: Promise<T>
-} {
+}
+
+function createDeferred<T, E = void>(): Deferred<T, E> {
   let resolve = () => {}
   let reject = () => {}
   const promise: Promise<T> = new Promise((res, rej) => {
