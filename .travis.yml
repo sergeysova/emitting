@@ -12,4 +12,5 @@ script:
   - yarn test
 
 after_success:
+  - yarn
   - yarn report
