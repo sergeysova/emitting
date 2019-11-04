@@ -13,3 +13,18 @@ script:
 
 after_success:
   - yarn report
+  - yarn docs
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local_dir: docs
+  fqdn: emitting.sova.dev
+  on:
+    branch: master
+
+branches:
+  except:
+    - gh-pages

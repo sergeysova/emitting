@@ -1,5 +1,12 @@
+/**
+ * When called unsubscribes from event
+ */
 type Unsubscribe = () => void
 
+/**
+ * Any function that can handle event payload
+ * @typeparam V Value passed to listener
+ */
 type Listener<V> = (value: V) => void
 
 export interface PublicEmitter<
@@ -25,22 +32,30 @@ export interface PrivateEmitter<
   Key extends keyof Events = keyof Events
 > extends PublicEmitter<Events, Key> {
   emit<K extends Key = Key>(event: K, value: Events[K]): void
+
+  emitCallback<K extends Key = Key>(event: K): (value: Events[K]) => void
+
   off(event: Key): void
 }
 
-export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
+interface Emitter<Events, Key extends keyof Events = keyof Events>
+  extends PrivateEmitter<Events, Key> {}
+
+export class EventEmitter<Events, Key extends keyof Events = keyof Events>
+  implements Emitter<Events, Key> {
   private listeners: Map<Key, Set<Listener<Events[Key]>>> = new Map()
 
   /**
    * Subscribes listener to specified event.
    * @return Function that unsubscribe listener from the specified event
-   * @example
+   * ```ts
    * function() {
    *   const unsubscribe = events.on("connected", () => {
    *     console.log("event connected received")
    *   })
    *   unsubscribe() // listener for connected won't be called anymore
    * }
+   * ```
    */
   public on<K extends Key = Key>(
     event: K,
@@ -64,13 +79,14 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
   }
 
   /**
-   * Subscribes to event, and when it received immediately unsubscribe.
+   * Subscribes to event, and when it received immediately unsubscribe.<br/>
    * Unsubscribe function can be called at any time.
-   * @example
+   * ```ts
    * const unsubscribe = events.once("newMessage", (message) => {
    *   console.log(message)
    * })
    * setTimeout(() => unsubscribe(), 300) // unsubscribe from event after 300 ms
+   * ```
    */
   public once<K extends Key>(
     event: K,
@@ -86,10 +102,11 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
   /**
    * Creates promise that resolves when specified event is received.
    * @returns Promise resolved with payload of the event
-   * @example
+   * ```ts
    * async function() {
    *   const message = await events.take("messageReceived")
    * }
+   * ```
    */
   public take<K extends Key>(event: K): Promise<Events[K]> {
     const { promise, resolve } = createDeferred<Events[K]>()
@@ -98,11 +115,11 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
   }
 
   /**
-   * Creates a promise that resolves when specified event is received.
+   * Creates a promise that resolves when specified event is received.<br/>
    * Promise is rejected when timeout is reached.
    * @param timeout milliseconds
    * @returns Promise resolves with payload of the received event.
-   * @example
+   * ```ts
    * async function() {
    *   try {
    *     const message = await events.takeTimeout("messageReceived", 300);
@@ -110,6 +127,7 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
    *     console.log("Timeout reached.");
    *   }
    * }
+   * ```
    */
   public takeTimeout<K extends Key>(
     event: K,
@@ -131,9 +149,9 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
   }
 
   /**
-   * Creates promise that resolves when left event is received with payload of the event.
+   * Creates promise that resolves when left event is received with payload of the event.<br/>
    * Promise rejects when right event is received with payload of the event.
-   * @example
+   * ```ts
    * async function() {
    *   try {
    *     const auth = await events.takeEither("authSuccess", "authFailure");
@@ -141,6 +159,7 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
    *     console.error(authError);
    *   }
    * }
+   * ```
    */
   public takeEither<Success extends Key, Failure extends Key>(
     success: Success,
@@ -170,6 +189,14 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
     }
   }
 
+  /**
+   * Creates callback that can be called with payload to emit event.
+   * ```ts
+   * const callback = events.emitCallback("newMessage")
+   *
+   * callback(message) // emits "newMessage" with `message` as payload
+   * ```
+   */
   public emitCallback<K extends Key = Key>(
     event: K,
   ): (value: Events[K]) => void {
@@ -190,12 +217,18 @@ export class EventEmitter<Events, Key extends keyof Events = keyof Events> {
   }
 }
 
+/**
+ * @private
+ */
 type Deferred<T, E> = {
   resolve: (value: T) => void
   reject: (error: E) => void
   promise: Promise<T>
 }
 
+/**
+ * @private
+ */
 function createDeferred<T, E = void>(): Deferred<T, E> {
   let resolve = () => {}
   let reject = () => {}

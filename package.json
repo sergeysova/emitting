@@ -10,7 +10,10 @@
     "clean": "rimraf lib typings",
     "report": "codecov",
     "prepare": "npm run clean && npm run build",
-    "size": "size-limit"
+    "size": "size-limit",
+    "doctoc": "doctoc README.md",
+    "typedoc": "typedoc --excludeProtected --excludePrivate",
+    "docs": "npm run typedoc"
   },
   "files": [
     "lib",
@@ -48,7 +51,7 @@
   "bugs": {
     "url": "https://github.com/sergeysova/emitting/issues"
   },
-  "homepage": "https://github.com/sergeysova/emitting#readme",
+  "homepage": "https://github.com/sergeysova/emitting#emitting",
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -59,6 +62,7 @@
     "babel-jest": "^24.9.0",
     "codecov": "^3.6.1",
     "cross-env": "^6.0.3",
+    "doctoc": "^1.4.0",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
