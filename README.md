@@ -257,6 +257,7 @@ emitter.off("hello") // all listeners removed
 - [ ] Add support for reactive (`.subscribe`)
 - [ ] Add async iterators (`.iterate(eventName)`)
 - [ ] Add benchmarks
+- [ ] Add `.public(): PublicEmitter` and `.private(): PrivateEmitter`
 
 ## License
 
