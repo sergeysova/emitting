@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "baseUrl": "./src",
+    "checkJs": false,
+    "declaration": true,
+    "declarationDir": "./typings",
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "lib": ["es2015", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es6",
+    "types": ["@types/jest"]
+  },
+  "exclude": ["./lib"],
+  "include": ["./src"]
+}

@@ -1,0 +1,61 @@
+{
+  "name": "emitting",
+  "version": "0.1.0",
+  "description": "EventEmitter designed for TypeScript and Promises",
+  "main": "lib/index.js",
+  "typings": "typings",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "files": [
+    "./lib",
+    "./typings"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeysova/emitting.git"
+  },
+  "keywords": [
+    "event",
+    "events",
+    "emitter",
+    "eventemitter",
+    "types",
+    "typescript",
+    "emit",
+    "once",
+    "promise",
+    "pub/sub",
+    "reactor",
+    "emit",
+    "emits",
+    "addListener",
+    "addEventListener",
+    "subscribe"
+  ],
+  "author": "Sergey Sova <mail@sergeysova.com> (https://sergeysova.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sergeysova/emitting/issues"
+  },
+  "homepage": "https://github.com/sergeysova/emitting#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/jest": "^24.0.21",
+    "babel-jest": "^24.9.0",
+    "cross-env": "^6.0.3",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "typedoc": "^0.15.0",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5"
+  }
+}
