@@ -45,6 +45,7 @@
   "homepage": "https://github.com/sergeysova/emitting#readme",
   "devDependencies": {
     "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
     "@types/jest": "^24.0.21",
@@ -60,7 +61,5 @@
     "typedoc": "^0.15.0",
     "typescript": "^3.6.4"
   },
-  "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.5.5"
-  }
+  "dependencies": {}
 }
