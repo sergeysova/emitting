@@ -256,6 +256,7 @@ emitter.off("hello") // all listeners removed
 - [ ] Add `emitting::listenerAdded`, `emitting::listenerRemoved`
 - [ ] Add support for reactive (`.subscribe`)
 - [ ] Add async iterators (`.iterate(eventName)`)
+- [ ] Add benchmarks
 
 ## License
 
