@@ -14,7 +14,7 @@ Emitting is a simple event emitter designed for **TypeScript** and **Promises**.
 - **Waiting for event** with `.take("event"): Promise<Payload>` and same
 - **Do not `throw`** an error when you emit an `error` event and nobody is listening
 - **Functional** — methods don't rely on `this`
-- **Small size**. 500 bytes without typings. No dependencies. [Size Limit](https://github.com/ai/size-limit) controls the size.
+- **Small size**. No dependencies. [Size Limit](https://github.com/ai/size-limit) controls the size.
 
 ## Table of contents
 
