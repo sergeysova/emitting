@@ -1,0 +1,7 @@
+{
+  "mode": "file",
+  "theme": "default",
+  "exclude": "./tests/*",
+  "excludeProtected": true,
+  "excludePrivate": true
+}

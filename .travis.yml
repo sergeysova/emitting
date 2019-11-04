@@ -24,6 +24,7 @@ deploy:
   fqdn: emitting.sova.dev
   on:
     branch: master
+    node_js: "stable"
 
 branches:
   except:
