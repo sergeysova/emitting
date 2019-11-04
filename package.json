@@ -6,7 +6,8 @@
   "typings": "typings",
   "scripts": {
     "test": "jest",
-    "build": "tsc",
+    "build": "tsc --build ./tsconfig.json",
+    "clean": "rimraf lib typings",
     "report": "covecov",
     "prepublishOnly": "npm run build"
   },
@@ -54,6 +55,7 @@
     "jest": "^24.9.0",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
     "ts-jest": "^24.1.0",
     "typedoc": "^0.15.0",
     "typescript": "^3.6.4"

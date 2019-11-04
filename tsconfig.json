@@ -5,7 +5,6 @@
     "checkJs": false,
     "declaration": true,
     "declarationDir": "./typings",
-    "declarationMap": true,
     "esModuleInterop": true,
     "incremental": true,
     "lib": ["es2015", "dom"],
@@ -16,6 +15,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "es6",
+    "noEmit": false,
     "types": ["@types/jest"]
   },
   "exclude": ["./lib"],
