@@ -1,6 +1,6 @@
 {
   "name": "emitting",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "EventEmitter designed for TypeScript and Promises",
   "main": "lib/index.js",
   "typings": "typings",
@@ -9,11 +9,11 @@
     "build": "tsc --build ./tsconfig.json",
     "clean": "rimraf lib typings",
     "report": "covecov",
-    "prepublishOnly": "npm run build"
+    "prepare": "npm run clean && npm run build"
   },
   "files": [
-    "./lib",
-    "./typings"
+    "lib",
+    "typings"
   ],
   "repository": {
     "type": "git",
