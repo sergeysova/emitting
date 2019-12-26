@@ -7,7 +7,7 @@ type Unsubscribe = () => void
  * Any function that can handle event payload
  * @typeparam V Value passed to listener
  */
-type Listener<V> = (value: V) => void
+type Listener<V> = (value: V) => any
 
 export interface PublicEmitter<
   Events,
